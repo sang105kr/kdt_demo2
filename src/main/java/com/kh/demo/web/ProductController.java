@@ -91,4 +91,14 @@ public class ProductController {
 
     return "/product/detailForm";
   }
+
+  //단건삭제
+  @GetMapping("/{id}/del")
+  public String deleteById(@PathVariable("id") Long productId){
+    log.info("productId={}",productId);
+
+    int rows = productSVC.deleteById(productId);
+
+    return "redirect:/products"; // 302 get rediredUtrl: http://localhost:9080/products
+  }
 }

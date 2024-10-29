@@ -53,4 +53,12 @@ public class ProductDAOImplTest {
     Assertions.assertThat(findedProduct.getQuantity()).isEqualTo(5L);
     Assertions.assertThat(findedProduct.getPrice()).isEqualTo(500000L);
   }
+
+  @Test
+  @DisplayName("상품단건삭제")
+  void deleteById(){
+    Long productId = 37L;
+    int rows = productDAO.deleteById(productId);
+    Assertions.assertThat(rows).isEqualTo(1);
+  }
 }

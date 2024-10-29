@@ -78,4 +78,15 @@ public class ProductDAOImpl implements ProductDAO{
 
     return Optional.of(product);
   }
+
+  @Override
+  public int deleteById(Long productId) {
+    StringBuffer sql = new StringBuffer();
+    sql.append("delete from product ");
+    sql.append("where product_id = :productId ");
+
+    Map<String, Long> param = Map.of("productId",productId);
+    int rows = template.update(sql.toString(), param);
+    return rows;
+  }
 }

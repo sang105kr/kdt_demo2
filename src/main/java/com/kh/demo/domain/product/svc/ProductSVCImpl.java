@@ -30,4 +30,9 @@ public class ProductSVCImpl implements ProductSVC{
   public Optional<Product> findById(Long productId) {
     return productDAO.findById(productId);
   }
+
+  @Override
+  public int deleteById(Long productId) {
+    return productDAO.deleteById(productId);
+  }
 }
