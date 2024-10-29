@@ -2,14 +2,17 @@ package com.kh.demo.web;
 
 import com.kh.demo.domain.entity.Product;
 import com.kh.demo.domain.product.svc.ProductSVC;
+import com.kh.demo.web.form.product.AllForm;
 import com.kh.demo.web.form.product.SaveForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -49,8 +52,18 @@ public class ProductController {
 
   //목록양식
   @GetMapping  // get /products
-  public String findAll(){
+  public String findAll(Model model){
     List<Product> list = productSVC.findAll();
+    List<AllForm> all = new ArrayList<>();
+
+    for (Product product : list) {
+      AllForm allForm = new AllForm();
+      allForm.setProductId(product.getProductId());
+      allForm.setPname(product.getPname());
+      all.add(allForm);
+    }
+
+    model.addAttribute("all",all);
 
     return "/product/all"; // view이름
   }

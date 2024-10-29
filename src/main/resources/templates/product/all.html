@@ -8,7 +8,26 @@
 </head>
 <body>
   <h3>상품목록</h3>
-
-  <a href="/products/add">상품등록</a>
+  <table>
+    <thead>
+    <tr>
+      <th>상품ID</th>
+      <th>상품명</th>
+    </tr>
+    <tboyd>
+      <tr th:each="product:${all}">
+        <td th:text="${product.productId}">1</td>
+        <td th:text="${product.pname}">컴퓨터</td>
+      </tr>
+    </tboyd>
+    </thead>
+  </table>
+  <button id="btnAdd">상품등록</button>
+  <script>
+    const btnAdd = document.getElementById('btnAdd');
+    btnAdd.addEventListener('click',e=>{
+      location.href = '/products/add';      // get /products/add
+    },false);
+  </script>
 </body>
 </html>
