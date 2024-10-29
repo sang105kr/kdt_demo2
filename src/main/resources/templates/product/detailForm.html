@@ -8,6 +8,12 @@
 </head>
 <body>
   <h3>상품상세</h3>
+  <form action="" method="post">
+    <div><label for="">상품ID</label><input type="text" name="productId" readonly th:value="${detailForm.productId}"></div>
+    <div><label for="">상품명</label><input type="text" name="pname" readonly th:value="${detailForm.pname}"></div>
+    <div><label for="">가격</label><input type="text" name="price" readonly th:value="${detailForm.price}"></div>
+    <div><label for="">수량</label><input type="text" name="quantity" readonly th:value="${detailForm.quantity}"></div>
+  </form>
   <div><a href="">수정</a><a href="#">삭제</a><a href="/products">목록</a></div>
 </body>
 </html>
