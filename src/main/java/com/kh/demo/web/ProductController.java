@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequestMapping("/products")
@@ -46,8 +48,10 @@ public class ProductController {
   }
 
   //목록양식
-  @GetMapping
+  @GetMapping  // get /products
   public String findAll(){
+    List<Product> list = productSVC.findAll();
+
     return "/product/all"; // view이름
   }
 }

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -15,8 +17,11 @@ public class ProductSVCImpl implements ProductSVC{
 
   @Override
   public Long save(Product product) {
-    long rows = productDAO.save(product);
-    return rows;
+    return productDAO.save(product);
   }
 
+  @Override
+  public List<Product> findAll() {
+    return productDAO.findAll();
+  }
 }
