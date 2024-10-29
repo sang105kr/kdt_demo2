@@ -3,12 +3,16 @@ package com.kh.demo.domain.product.dao;
 import com.kh.demo.domain.entity.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -50,5 +54,28 @@ public class ProductDAOImpl implements ProductDAO{
     List<Product> list = template.query(sql.toString(), BeanPropertyRowMapper.newInstance(Product.class));
 
     return list;
+  }
+
+  @Override
+  public Optional<Product> findById(Long productId) {
+    StringBuffer sql = new StringBuffer();
+    sql.append("select product_id,pname,quantity,price ");
+    sql.append("  from product ");
+    sql.append(" where product_id = :productId ");
+
+    SqlParameterSource param = new MapSqlParameterSource()
+            .addValue("productId",productId);
+
+    Product product = null;
+    try {
+      product = template.queryForObject(
+              sql.toString(),
+              param,
+              BeanPropertyRowMapper.newInstance(Product.class));
+    } catch (EmptyResultDataAccessException e) { //조회 레코드가 없으면 예외 발생
+      return Optional.empty();
+    }
+
+    return Optional.of(product);
   }
 }

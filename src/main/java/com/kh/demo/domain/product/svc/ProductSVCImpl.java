@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,5 +24,10 @@ public class ProductSVCImpl implements ProductSVC{
   @Override
   public List<Product> findAll() {
     return productDAO.findAll();
+  }
+
+  @Override
+  public Optional<Product> findById(Long productId) {
+    return productDAO.findById(productId);
   }
 }

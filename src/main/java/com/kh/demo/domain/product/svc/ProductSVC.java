@@ -3,6 +3,7 @@ package com.kh.demo.domain.product.svc;
 import com.kh.demo.domain.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductSVC {
   // 등록
@@ -10,4 +11,7 @@ public interface ProductSVC {
 
   // 목록
   List<Product> findAll();
+
+  //조회
+  Optional<Product> findById(Long productId);
 }
