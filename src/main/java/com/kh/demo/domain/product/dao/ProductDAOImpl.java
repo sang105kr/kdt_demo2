@@ -1,5 +1,6 @@
 package com.kh.demo.domain.product.dao;
 
+import com.kh.demo.domain.entity.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,14 +20,14 @@ public class ProductDAOImpl implements ProductDAO{
 //  }
 
   @Override
-  public Long save(String pname, int price, int quantity) {
+  public Long save(Product product) {
     //sql
     StringBuffer sql = new StringBuffer();
     sql.append("insert into product(product_id,pname,quantity,price) ");
     sql.append("values(product_product_id_seq.nextval, :pname, :quantity, :price) ");
 
     //sql수행
-    Map param = Map.of("pname",pname,"quantity",quantity,"price",price);
+    Map param = Map.of("pname",product.getPname(),"quantity",product.getQuantity(),"price",product.getPrice());
     long rows = template.update(sql.toString(),param);
 
     log.info("rows={}", rows);

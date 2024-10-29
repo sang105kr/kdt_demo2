@@ -1,6 +1,8 @@
 package com.kh.demo.domain.product.dao;
 
+import com.kh.demo.domain.entity.Product;
+
 public interface ProductDAO {
   // 등록
-  Long save(String pname, int price, int quantity);
+  Long save(Product product);
 }

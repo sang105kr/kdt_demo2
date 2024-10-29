@@ -1,6 +1,8 @@
 package com.kh.demo.domain.product.svc;
 
+import com.kh.demo.domain.entity.Product;
+
 public interface ProductSVC {
   // 등록
-  Long save(String pname, int price, int quantity);
+  Long save(Product product);
 }
