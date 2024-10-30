@@ -23,6 +23,11 @@
     const btnUpdateEle = document.getElementById('btnUpdate');
     const btnDeleteEle = document.getElementById('btnDelete');
     const btnFindAllEle = document.getElementById('btnFindAll');
+    //수정
+    btnUpdateEle.addEventListener('click',e=>{
+      const productIdEle = document.getElementById('productId');
+      location.href=`/products/${productIdEle.value}`;
+    },false);
 
     //삭제
     btnDeleteEle.addEventListener('click',e=>{

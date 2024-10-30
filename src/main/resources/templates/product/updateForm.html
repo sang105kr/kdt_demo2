@@ -8,6 +8,35 @@
 </head>
 <body>
   <h3>상품수정</h3>
-  <div><a href="#">저장</a><a href="#">취소</a><a href="/products">목록</a></div>
+  <form id="frm" action="" method="post">
+    <div><label for="">상품ID</label><input type="text" name="productId" id="productId" readonly th:value="${updateForm.productId}"></div>
+    <div><label for="">상품명</label><input type="text" name="pname" th:value="${updateForm.pname}"></div>
+    <div><label for="">가격</label><input type="text" name="price"  th:value="${updateForm.price}"></div>
+    <div><label for="">수량</label><input type="text" name="quantity"  th:value="${updateForm.quantity}"></div>
+  </form>
+  <div>
+    <button id="btnUpdate">저장</button>
+    <button id="btnCancel">취소</button>
+    <button id="btnFindAll">목록</button>
+  </div>
+  <script>
+    const btnUpdateEle = document.getElementById('btnUpdate');
+    const btnCancelEle = document.getElementById('btnCancel');
+    const btnFindAll = document.getElementById('btnFindAll');
+    //저장
+    btnUpdateEle.addEventListener('click',e=>{
+      const frmEle = document.getElementById('frm');
+      frmEle.submit();
+    },false);
+    //취소
+    btnCancelEle.addEventListener('click',e=>{
+      history.go(-1);
+    },false);
+    //목록
+    btnFindAll.addEventListener('click',e=>{
+      location.href = '/products';
+    },false);
+
+  </script>
 </body>
 </html>

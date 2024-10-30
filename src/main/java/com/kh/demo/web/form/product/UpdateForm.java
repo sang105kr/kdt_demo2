@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UpdateForm {
+  private Long productId;
   private String pname;
   private Long price;
   private Long quantity;

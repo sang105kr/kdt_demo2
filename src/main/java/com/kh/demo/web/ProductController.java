@@ -106,7 +106,25 @@ public class ProductController {
     return "redirect:/products"; // 302 get rediredUtrl: http://localhost:9080/products
   }
 
-  //단건수정
+  //수정화면
+  @GetMapping("/{id}")
+  public String updateForm(@PathVariable("id") Long productId,Model model){
+
+    Optional<Product> optionalProduct = productSVC.findById(productId);
+    Product findedProduct = optionalProduct.orElseThrow();
+
+    UpdateForm updateForm = new UpdateForm();
+    updateForm.setProductId(findedProduct.getProductId());
+    updateForm.setPname(findedProduct.getPname());
+    updateForm.setPrice(findedProduct.getPrice());
+    updateForm.setQuantity(findedProduct.getQuantity());
+
+    model.addAttribute("updateForm", updateForm);
+
+    return "/product/updateForm";
+  }
+
+  //단건수정처리
   @PostMapping("/{id}")
   public String updatedById(
           @PathVariable("id") Long productId,
@@ -115,13 +133,14 @@ public class ProductController {
     log.info("productId={}", productId);
     log.info("updateForm={}", updateForm);
 
+    Product product = new Product();
+    product.setPname(updateForm.getPname());
+    product.setPrice(updateForm.getPrice());
+    product.setQuantity(updateForm.getQuantity());
 
-
-//    productSVC.updateById(productId,)
-
+    int rows = productSVC.updateById(productId, product);
 
     redirectAttributes.addAttribute("id",productId);
     return "redirect:/products/{id}/detail"; //  302 get redirectUrl->http://localhost:9080/products/2/detail
   }
-
 }
