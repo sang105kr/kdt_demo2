@@ -17,4 +17,7 @@ public interface ProductDAO {
 
   //삭제
   int deleteById(Long productId);
+
+  //수정
+  int updateById(Long productId, Product product);
 }

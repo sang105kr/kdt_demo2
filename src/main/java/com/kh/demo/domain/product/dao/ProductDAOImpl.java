@@ -100,4 +100,22 @@ public class ProductDAOImpl implements ProductDAO{
     int rows = template.update(sql.toString(), param);
     return rows;
   }
+
+  @Override
+  public int updateById(Long productId, Product product) {
+    StringBuffer sql = new StringBuffer();
+    sql.append("update product ");
+    sql.append("set pname = :pname, quantity = :quantity, price = :price ");
+    sql.append("where product_id = :productId ");
+
+    SqlParameterSource param = new MapSqlParameterSource()
+            .addValue("pname",product.getPname())
+            .addValue("quantity",product.getQuantity())
+            .addValue("price",product.getPrice())
+            .addValue("productId",productId);
+
+    int rows = template.update(sql.toString(), param);
+
+    return rows;
+  }
 }

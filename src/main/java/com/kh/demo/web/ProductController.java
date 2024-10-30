@@ -5,6 +5,7 @@ import com.kh.demo.domain.product.svc.ProductSVC;
 import com.kh.demo.web.form.product.AllForm;
 import com.kh.demo.web.form.product.DetailForm;
 import com.kh.demo.web.form.product.SaveForm;
+import com.kh.demo.web.form.product.UpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -104,4 +105,23 @@ public class ProductController {
 
     return "redirect:/products"; // 302 get rediredUtrl: http://localhost:9080/products
   }
+
+  //단건수정
+  @PostMapping("/{id}")
+  public String updatedById(
+          @PathVariable("id") Long productId,
+          UpdateForm updateForm,
+          RedirectAttributes redirectAttributes){
+    log.info("productId={}", productId);
+    log.info("updateForm={}", updateForm);
+
+
+
+//    productSVC.updateById(productId,)
+
+
+    redirectAttributes.addAttribute("id",productId);
+    return "redirect:/products/{id}/detail"; //  302 get redirectUrl->http://localhost:9080/products/2/detail
+  }
+
 }
