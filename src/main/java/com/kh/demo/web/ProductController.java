@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ProductController {
   }
   //등록처리
   @PostMapping("/add")  // "post /products/add"
-  public String add(SaveForm saveForm){
+  public String add(SaveForm saveForm, RedirectAttributes redirectAttributes){
     //사용자가 입력한정보
     log.info("panme={}, price={}, quantity={}", saveForm.getPname(),saveForm.getPrice(), saveForm.getQuantity());
 
@@ -48,9 +49,11 @@ public class ProductController {
     product.setPrice(saveForm.getPrice());
     product.setQuantity(saveForm.getQuantity());
 
-    productSVC.save(product);
+    Long pid = productSVC.save(product);
+    // 리다이렉트 url경로 변수에 값을 동적으로 할당하는 용도
+    redirectAttributes.addAttribute("id",pid);
 
-    return "/product/detailForm"; //상품상세화면
+    return "redirect:/products/{id}/detail"; //상품상세화면 302 get http://locahost:9080/products/2/detail
   }
 
   //목록양식

@@ -5,9 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,12 +36,20 @@ public class ProductDAOImpl implements ProductDAO{
     sql.append("values(product_product_id_seq.nextval, :pname, :quantity, :price) ");
 
     //sql수행
-    Map param = Map.of("pname",product.getPname(),"quantity",product.getQuantity(),"price",product.getPrice());
-    long rows = template.update(sql.toString(),param);
+    //Map param = Map.of("pname",product.getPname(),"quantity",product.getQuantity(),"price",product.getPrice());
+    // spring been객체(product)의 멤버필드와 sql의 매개변수(=파라미터) 이름을 매칭한 정보를 반환
+    SqlParameterSource param = new BeanPropertySqlParameterSource(product);
 
+    // template.update()가 수행된 레코드의 특정 컬럼값을 읽어오는 용도
+    KeyHolder keyholder = new GeneratedKeyHolder();
+    long rows = template.update(sql.toString(),param,keyholder,new String[]{"product_id"});
     log.info("rows={}", rows);
-
-    return rows;
+    //case1) 1개의 컬럼값을 읽어올때
+//    long pid = keyholder.getKey().longValue();//상품아이디
+    //case2) 2개 이상의 컬럼값을 읽어올때
+    Number pidNumber = (Number)keyholder.getKeys().get("product_id");
+    long pid = pidNumber.longValue();
+    return pid;  //상품 아이디 반환
   }
 
   @Override

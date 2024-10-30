@@ -27,8 +27,8 @@ public class ProductDAOImplTest {
     product.setPrice(1000000L);
     product.setQuantity(10L);
 
-    Long insertedRows = productDAO.save(product);
-    log.info("insertedRows={}",insertedRows);
+    Long pid = productDAO.save(product);
+    log.info("상품아이디={}",pid);
   }
 
   @Test
