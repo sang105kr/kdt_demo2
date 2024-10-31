@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>상품상세</title>
+  <link rel="stylesheet" href="/css/product/detailForm.css">
+  <script defer src="/js/product/detailForm.js"></script>
 </head>
 <body>
   <h3>상품상세</h3>
@@ -19,28 +21,5 @@
     <button id="btnDelete">삭제</button>
     <button id="btnFindAll">목록</button>
   </div>
-  <script>
-    const btnUpdateEle = document.getElementById('btnUpdate');
-    const btnDeleteEle = document.getElementById('btnDelete');
-    const btnFindAllEle = document.getElementById('btnFindAll');
-    //수정
-    btnUpdateEle.addEventListener('click',e=>{
-      const productIdEle = document.getElementById('productId');
-      location.href=`/products/${productIdEle.value}`;
-    },false);
-
-    //삭제
-    btnDeleteEle.addEventListener('click',e=>{
-      if(!confirm('삭제하시겠습니까')) return;
-
-      const productIdEle = document.getElementById('productId');
-      location.href = `/products/${productIdEle.value}/del`;
-    },false);
-
-    //목록
-    btnFindAllEle.addEventListener('click',e=>{
-      location.href = '/products';
-    },false);
-  </script>
 </body>
 </html>

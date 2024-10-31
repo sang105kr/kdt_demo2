@@ -54,7 +54,7 @@ public class ProductController {
     // 리다이렉트 url경로 변수에 값을 동적으로 할당하는 용도
     redirectAttributes.addAttribute("id",pid);
 
-    return "redirect:/products/{id}/detail"; //상품상세화면 302 get http://locahost:9080/products/2/detail
+    return "redirect:/products/{id}"; //상품상세화면 302 get http://locahost:9080/products/2
   }
 
   //목록양식
@@ -76,7 +76,7 @@ public class ProductController {
   }
 
   //상품단건조회
-  @GetMapping("/{id}/detail")  // Get /products/2/detail
+  @GetMapping("/{id}")  // Get /products/2/detail
   public String findById(
           @PathVariable("id") Long productId,
           Model model){
@@ -107,7 +107,7 @@ public class ProductController {
   }
 
   //수정화면
-  @GetMapping("/{id}")
+  @GetMapping("/{id}/edit")
   public String updateForm(@PathVariable("id") Long productId,Model model){
 
     Optional<Product> optionalProduct = productSVC.findById(productId);
@@ -125,7 +125,7 @@ public class ProductController {
   }
 
   //단건수정처리
-  @PostMapping("/{id}")
+  @PostMapping("/{id}/edit")
   public String updatedById(
           @PathVariable("id") Long productId,
           UpdateForm updateForm,
@@ -141,6 +141,6 @@ public class ProductController {
     int rows = productSVC.updateById(productId, product);
 
     redirectAttributes.addAttribute("id",productId);
-    return "redirect:/products/{id}/detail"; //  302 get redirectUrl->http://localhost:9080/products/2/detail
+    return "redirect:/products/{id}"; //  302 get redirectUrl->http://localhost:9080/products/2
   }
 }

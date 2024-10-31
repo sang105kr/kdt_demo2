@@ -30,7 +30,9 @@
     },false);
     //취소
     btnCancelEle.addEventListener('click',e=>{
-      history.go(-1);
+      // history.go(-1); 브라우저에서 뒤로가기 버튼
+      const productIdEle = document.getElementById('productId');
+      location.href=`/products/${productIdEle.value}`;
     },false);
     //목록
     btnFindAll.addEventListener('click',e=>{
