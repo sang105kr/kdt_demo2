@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <table>
+      <thead>
+        <tr>
+          <th></th><th>상품ID</th><th>상품명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><input type="checkbox" name="productIds" id=""></th><th>1</th><th>상품명1</th>
+        </tr>        
+        <tr>
+          <th><input type="checkbox" name="productIds" id=""></th><th>1</th><th>상품명1</th>
+        </tr>        
+        <tr>
+          <th><input type="checkbox" name="productIds" id=""></th><th>1</th><th>상품명1</th>
+        </tr>        
+        <tr>
+          <th><input type="checkbox" name="productIds" id=""></th><th>1</th><th>상품명1</th>
+        </tr>        
+        <tr>
+          <th><input type="checkbox" name="productIds" id=""></th><th>1</th><th>상품명1</th>
+        </tr>        
+      </tbody>
+    </table>
+    <div><input type="checkbox" id="selectAll"><label for="selectAll">전체선택</label><button>삭제</button><button>상품등록</button></div>
+  </form>
+  <script>
+    const selectAllEle = document.getElementById('selectAll');       
+    selectAllEle.addEventListener('change',e=>{
+      // console.dir(e.target);
+      const checkboxesEle = document.querySelectorAll('input[name="productIds"]');
+      if(e.target.checked){
+        Array.from(checkboxesEle).forEach(checkbox=>checkbox.checked = true);
+        // console.log(checkboxesEle);
+      }else{
+        Array.from(checkboxesEle).forEach(checkbox=>checkbox.checked = false);
+      }
+    },false);
+  </script>
+</body>
+</html>
