@@ -14,8 +14,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -108,7 +106,7 @@ public class ProductDAOImpl implements ProductDAO{
   RowMapper<Product> productRowMapper(){
     return (rs, rowNum) -> {
       Product product = new Product();
-      product.setProductId(rs.getLong("prodocut_id"));
+      product.setProductId(rs.getLong("product_id"));
       product.setPname(rs.getString("pname"));
       product.setPrice(rs.getLong("price"));
       product.setQuantity(rs.getLong("quantity"));
@@ -125,7 +123,7 @@ public class ProductDAOImpl implements ProductDAO{
     sql.append("order by product_id desc ");
 
     //db요청
-    // BeanPropertyRowMapper : 자바 entity클래스와 db레코드를 수동 매핑
+    // 자바 entity클래스와 product 레코드를 수동 매핑
     List<Product> list = template.query(sql.toString(), productRowMapper());
 
     return list;
@@ -142,7 +140,7 @@ public class ProductDAOImpl implements ProductDAO{
             .addValue("productId",productId);
 
     Product product = null;
-R
+
     try {
       product = template.queryForObject(
               sql.toString(),
@@ -180,6 +178,18 @@ R
             .addValue("productId",productId);
 
     int rows = template.update(sql.toString(), param);
+
+    return rows;
+  }
+
+  @Override
+  public int deleteByIds(List<Long> productIds) {
+    StringBuffer sql = new StringBuffer();
+    sql.append("delete from product ");
+    sql.append(" where product_id in (:productIds) ");
+
+    Map<String, List<Long>> param = Map.of("productIds", productIds);
+    int rows = template.update(sql.toString(),param);
 
     return rows;
   }

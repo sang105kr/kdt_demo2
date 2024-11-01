@@ -20,4 +20,7 @@ public interface ProductSVC {
 
   //수정
   int updateById(Long productId, Product product);
+
+  //여러건 삭제
+  int deleteByIds(List<Long> productIds);
 }

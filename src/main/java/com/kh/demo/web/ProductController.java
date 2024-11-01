@@ -143,4 +143,14 @@ public class ProductController {
     redirectAttributes.addAttribute("id",productId);
     return "redirect:/products/{id}"; //  302 get redirectUrl->http://localhost:9080/products/2
   }
+
+  //여러건 삭제처리
+  @PostMapping("/del")
+  public String deleteByIds(List<Long> productIds){
+    log.info("productIds={}", productIds);
+
+//    int rows = productSVC.deleteByIds(productIds);
+
+    return "redirect:/products";   // 302 get redirectUrl->http://localhost:9080/products
+  }
 }
