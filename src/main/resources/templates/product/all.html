@@ -8,7 +8,7 @@
 </head>
 <body>
   <h3>상품목록</h3>
-  <form action="/products/del" method="post">
+  <form id='frm' action="/products/del" method="post">
     <table>
       <thead>
       <tr>
@@ -17,7 +17,7 @@
       </tr>
       <tboyd>
         <tr th:each="product:${all}">
-          <td><input type="checkbox" name="productIds" id=""></td>
+          <td><input type="checkbox" name="productIds" id="" th:value="${product.productId}"></td>
           <td th:text="${product.productId}">1</td>
           <td><a th:href="@{/products/{id}(id=${product.productId})}" th:text="${product.pname}">컴퓨터</a></td>
         </tr>
@@ -25,8 +25,16 @@
       </thead>
     </table>
   </form>
-  <button id="btnAdd">상품등록</button><button id="btnDels">삭제</button>
+  <button id="btnDels">삭제</button><button id="btnAdd">상품등록</button>
   <script>
+    // 삭제
+    const btnDelsEle = document.getElementById('btnDels');
+    btnDelsEle.addEventListener('click',e=>{
+      if(!confirm('삭제하시겠습니까?')) return;
+      document.getElementById('frm').submit();
+    },false);
+
+    // 상품등록
     const btnAdd = document.getElementById('btnAdd');
     btnAdd.addEventListener('click',e=>{
       location.href = '/products/add';      // get /products/add
