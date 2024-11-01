@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -13,6 +14,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,18 +54,79 @@ public class ProductDAOImpl implements ProductDAO{
     long pid = pidNumber.longValue();
     return pid;  //상품 아이디 반환
   }
+// case1) 이름 있는 클래스
+//  class MyRowMapper implements RowMapper{
+//    @Override
+//      public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+//        Product product = new Product();
+//        product.setProductId(rs.getLong("prodocut_id"));
+//        product.setPname(rs.getString("pname"));
+//        product.setPrice(rs.getLong("price"));
+//        product.setQuantity(rs.getLong("quantity"));
+//        return product;
+//      }
+//  }
+//
+//  MyRowMapper myrowMapper1 = new MyRowMapper();
+//  MyRowMapper myrowMapper2 = new MyRowMapper();
+
+  // case2) 익명클래스
+//  RowMapper<Product> myRowMapper = new RowMapper<>(){
+//    @Override
+//    public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+//      Product product = new Product();
+//      product.setProductId(rs.getLong("prodocut_id"));
+//      product.setPname(rs.getString("pname"));
+//      product.setPrice(rs.getLong("price"));
+//      product.setQuantity(rs.getLong("quantity"));
+//      return product;
+//    }
+//  };
+
+// case3) 람다식 : functional interface(메소드가 1개만 정의된 인터페이스)인 경우
+//  RowMapper<Product> myRowMapper = (rs, rowNum) -> {
+//      Product product = new Product();
+//      product.setProductId(rs.getLong("prodocut_id"));
+//      product.setPname(rs.getString("pname"));
+//      product.setPrice(rs.getLong("price"));
+//      product.setQuantity(rs.getLong("quantity"));
+//      return product;
+//  };
+  // case4) 함수1
+//  RowMapper<Product> productRowMapper(){
+//    RowMapper<Product> myRowMapper = (rs, rowNum) -> {
+//      Product product = new Product();
+//      product.setProductId(rs.getLong("prodocut_id"));
+//      product.setPname(rs.getString("pname"));
+//      product.setPrice(rs.getLong("price"));
+//      product.setQuantity(rs.getLong("quantity"));
+//      return product;
+//    };
+//    return myRowMapper;
+//  }
+  // case5) 함수2
+  RowMapper<Product> productRowMapper(){
+    return (rs, rowNum) -> {
+      Product product = new Product();
+      product.setProductId(rs.getLong("prodocut_id"));
+      product.setPname(rs.getString("pname"));
+      product.setPrice(rs.getLong("price"));
+      product.setQuantity(rs.getLong("quantity"));
+      return product;
+    };
+  }
 
   @Override
   public List<Product> findAll() {
     //sql
     StringBuffer sql = new StringBuffer();
-    sql.append("select product_id,pname,quantity,price ");
+    sql.append("select product_id ,pname,quantity,price ");
     sql.append("  from product ");
     sql.append("order by product_id desc ");
 
     //db요청
-    // BeanPropertyRowMapper : 자바 entity클래스와 db레코드를 자동 매핑
-    List<Product> list = template.query(sql.toString(), BeanPropertyRowMapper.newInstance(Product.class));
+    // BeanPropertyRowMapper : 자바 entity클래스와 db레코드를 수동 매핑
+    List<Product> list = template.query(sql.toString(), productRowMapper());
 
     return list;
   }
@@ -78,6 +142,7 @@ public class ProductDAOImpl implements ProductDAO{
             .addValue("productId",productId);
 
     Product product = null;
+R
     try {
       product = template.queryForObject(
               sql.toString(),
