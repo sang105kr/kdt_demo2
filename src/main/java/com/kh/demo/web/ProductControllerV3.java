@@ -6,12 +6,9 @@ import com.kh.demo.web.form.product.AllForm;
 import com.kh.demo.web.form.product.DetailForm;
 import com.kh.demo.web.form.product.SaveForm;
 import com.kh.demo.web.form.product.UpdateForm;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,10 +17,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@Controller
+//@Controller
 @RequestMapping("/products")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductControllerV3 {
 
   private final ProductSVC productSVC;
 
@@ -33,42 +30,15 @@ public class ProductController {
 
   //등록양식
   @GetMapping("/add")
-  public String addForm(Model model){
-    model.addAttribute("saveForm",new SaveForm());
+  public String addForm(){
+
     return "/product/add";//상품등록화면
   }
   //등록처리
   @PostMapping("/add")  // "post /products/add"
-  public String add(
-          @Valid // form객체에 필드별 유효성체크를 실시
-          @ModelAttribute SaveForm saveForm, //@ModelAttribute form객체를 모델객체에 추가하여 view에서 참조
-          BindingResult bindingResult, //BindingResult : 검증 결과를 담는 객체
-          RedirectAttributes redirectAttributes){
+  public String add(SaveForm saveForm, RedirectAttributes redirectAttributes){
     //사용자가 입력한정보
     log.info("panme={}, price={}, quantity={}", saveForm.getPname(),saveForm.getPrice(), saveForm.getQuantity());
-
-    // 요청데이터 유효성 체크
-    // 1. 어노테이션 기반의 필드 검증
-    if (bindingResult.hasErrors()) {
-      log.info("bindingResult={}", bindingResult);
-      return "/product/add";
-    }
-
-    // 2. 코드기반 검증 : 필드 및 글로벌 오류(필드 2개이상)
-    // 2.1 필드 오류 : 상품수량 100 초과 불가
-    if (saveForm.getQuantity() > 1000) {
-      bindingResult.rejectValue("quantity",null,"상품수량 100 초과 불가");
-    }
-
-    // 2.2 글로벌 오류 : 총액(상품수량 * 단가) 1000 만원 초과 불과
-    if (saveForm.getPrice() * saveForm.getQuantity() > 10_000_000L) {
-      bindingResult.reject(null,"총액(상품수량 * 단가) 1000 만원 초과 불과");
-    }
-
-    if (bindingResult.hasErrors()) {
-      log.info("bindingResult={}", bindingResult);
-      return "/product/add";
-    }
 
     //상품테이블에 저장
     Product product = new Product();
