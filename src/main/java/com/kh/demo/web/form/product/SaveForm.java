@@ -7,18 +7,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SaveForm {
-  @NotBlank(message="상품명은 필수 입니다.")
-  @Size(min=1,max=10,message = "상품명은 10자를 초과할수 없습니다.")
+  @NotBlank
+  @Size(min=1,max=10)
   private String pname;
 
-  @NotNull(message="수량은 필수 입니다.")
-  @Positive(message = "수량은 양수여야 합니다.")
-  @Max(value=9999999999L,message = "수량은 10자리 이하여야 합니다")
+  @NotNull
+  @Positive
+  @Max(value=9999999999L)
   private Long quantity;
 
-  @NotNull(message="가격은 필수 입니다.")
-  @Positive(message = "가격은 양수여야 합니다.")
-  @Min(value=1000,message = "가격은 1000미만 불가합니다")
-  @Max(value=9999999999L,message = "가격은 10자리 이하여야 합니다")
+  @NotNull
+  @Positive
+  @Min(value=1000)
+  @Max(value=9999999999L)
   private Long price;
 }

@@ -4,7 +4,7 @@ import com.kh.demo.domain.entity.Product;
 import com.kh.demo.domain.product.svc.ProductSVC;
 import com.kh.demo.web.form.product.AllForm;
 import com.kh.demo.web.form.product.DetailForm;
-import com.kh.demo.web.form.product.SaveForm;
+import com.kh.demo.web.form.product.SaveFormOld;
 import com.kh.demo.web.form.product.UpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,7 @@ public class ProductControllerV3 {
   }
   //등록처리
   @PostMapping("/add")  // "post /products/add"
-  public String add(SaveForm saveForm, RedirectAttributes redirectAttributes){
+  public String add(SaveFormOld saveForm, RedirectAttributes redirectAttributes){
     //사용자가 입력한정보
     log.info("panme={}, price={}, quantity={}", saveForm.getPname(),saveForm.getPrice(), saveForm.getQuantity());
 

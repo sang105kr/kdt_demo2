@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>상품등록</title>
+  <title th:text="#{title.product.add}">상품등록</title>
   <link rel="stylesheet" href="/css/common.css">
   <style>
   </style>
 </head>
 <body>
-  <h3>상품등록</h3>
+  <h3 th:text="#{title.product.add}">상품등록</h3>
+  <!-- th:object  html의 input요소와 controller의 form객체를 연결하는 구문-->
   <form id='frm' action="" method="post" th:object="${saveForm}">
     <div><span class="err" id="globalErr"></span></div>
     <!--/* <div class="err" th:errors="${saveForm}"/> */-->
@@ -19,25 +20,28 @@
       <p class="err" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
     </div>
     <div>
-      <label for="pname">상품명</label>
+      <label for="pname" th:text="#{label.product.pname}">상품명</label>
       <input type="text" name="pname" id="pname" th:value="*{pname}">
       <span class="err" id="errPname"></span>
       <!--/*<span class="err"  th:errors="${saveForm.pname}"></span>*/-->
       <span class="err"  th:each="err:${#fields.errors('pname')}"  th:text="${err}"></span>
     </div>
     <div>
-      <label for="price">가격</label>
+      <label for="price" th:text="#{label.product.price}">가격</label>
       <input type="text" name="price" id="price" th:value="*{price}">
       <span class="err" id="errPrice"></span>
       <span class="err"  th:errors="*{price}"></span>
     </div>
     <div>
-      <label for="quantity">수량</label>
+      <label for="quantity" th:text="#{label.product.quantity}">수량</label>
       <input type="text" name="quantity" id="quantity" th:value="*{quantity}">
       <span class="err" id="errQuantity"></span>
       <span class="err" th:errors="*{quantity}"></span>
     </div>
-    <div><button type="submit" id="btnAdd">등록</button><button type="button" id="btnFindAll">목록</button></div>
+    <div>
+      <button type="submit" id="btnAdd" th:text="#{button.add}">등록</button>
+      <button type="button" id="btnFindAll" th:text="#{button.list}">목록</button>
+    </div>
   </form>
   <script type="module">
     import {getBytesSize} from '/js/common.js';
@@ -50,7 +54,7 @@
       // errPname.textContent = '';
       // errPrice.textContent = '';
       // errQuantity.textContent = '';
-      
+
       // //검증
       // const pnameVal = pname.value.trim();
       // const priceVal = price.value.trim();
@@ -110,7 +114,7 @@
       //   globalErr.textContent = '총금액(가격 * 수량)이 1000만원을 초과할 수 없습니다.';
       //   return;
       // }
-      
+
       frm.submit();
 
     },false);
