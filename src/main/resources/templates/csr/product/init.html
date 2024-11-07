@@ -39,6 +39,7 @@
         console.log(result);
         if (result.header.rtcd === '00') {
           console.log(result.body);
+          // productId2.value = result.body.productId;
           productId2.setAttribute('value', result.body.productId);
           pname2.setAttribute('value', result.body.pname);
           quantity2.setAttribute('value', result.body.quantity);
@@ -108,10 +109,6 @@
       }
     };
 
-    displayReadForm();
-    displayForm();
-    getProducts();
-
     // //목록버튼
     // const $listBtn = document.createElement('button'); // <button></button>
     // $listBtn.textContent = '목록가져오기'; //<button>목록가져오기</button>
@@ -122,6 +119,7 @@
     const $list = document.createElement('div');
     document.body.appendChild($list);
 
+    //상품등록 화면
     function displayForm() {
       //상품등록
       const $addFormWrap = document.createElement('div');
@@ -180,7 +178,7 @@
       });
     }
 
-    //상품조회
+    //상품조회 화면
     function displayReadForm() {
       //상태 : 조회 mode-read, 편집 mode-edit
       const changeEditMode = frm => {
@@ -283,7 +281,7 @@
       changeReadMode($frm2);
     }
 
-    //상품목록
+    //상품목록 화면
     function displayProductList(products) {
       const makeTr = products => {
         const $tr = products
@@ -313,6 +311,7 @@
 
       const $products = $list.querySelectorAll('table tbody tr');
 
+      // Array.from($products)
       [...$products].forEach(product =>
         product.addEventListener('click', e => {
           const pid = e.currentTarget.dataset.pid;
@@ -320,6 +319,10 @@
         }),
       );
     }
+  
+    displayReadForm(); //조회
+    displayForm();//등록
+    getProducts();//목록
   </script>
 </head>
 <body></body>
