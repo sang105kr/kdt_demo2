@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품관리-CSR</title>
+  <script type="module">
+    //상품등록
+    const $addFormWrap = document.createElement('div');
+    $addFormWrap.innerHTML = `
+      <form id="frm">
+        <div>
+          <label for="pname">상품명</label>
+          <input type="text" name="pname" id="pname">
+        </div>
+        <div>
+          <label for="price">가격</label>
+          <input type="text" name="price" id="price">
+        </div>
+        <div>
+          <label for="quantity">수량</label>
+          <input type="text" name="quantity" id="quantity">
+        </div>
+        <div><button id="btnAdd">등록</button></div>
+      </form>
+    `;
+     
+    document.body.insertAdjacentElement('afterbegin',$addFormWrap);
+    const $frm = $addFormWrap.querySelector('#frm');
+    $frm.addEventListener('submit',e=>{
+      e.preventDefault();  // 기본 이벤트 막기
+      //1)유효성 체크
+
+      //2)
+      const product = {
+        "pname" : $addFormWrap.querySelector('#pname').value,
+        "price" : $addFormWrap.querySelector('#price').value,
+        "quantity" : $addFormWrap.querySelector('#quantity').value
+      }
+      console.log(product);
+
+    },false);
+  </script>
+</head>
+<body>
+
+
+</body>
+</html>
