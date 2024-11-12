@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -33,9 +34,9 @@ public class ApiProductController {
 
     if(optionalProduct.isPresent()){
       Product product = optionalProduct.get();
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS,product);
+      res = ApiResponse.of(ApiResponseCode.SUCCESS,product);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.ENTITY_NOT_FOUND,null);
+      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
 
     return res;
@@ -48,9 +49,9 @@ public class ApiProductController {
     ApiResponse<List<Product>> res = null;
     List<Product> products = productSVC.findAll();
     if (products.size() != 0) {
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS, products);
+      res = ApiResponse.of(ApiResponseCode.SUCCESS,products);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
     }
     return res;
   }
@@ -68,9 +69,9 @@ public class ApiProductController {
     Optional<Product> optionalProduct = productSVC.findById(pid);
     if(optionalProduct.isPresent()) {
       Product savedProduct = optionalProduct.get();
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS, savedProduct);
+      res = ApiResponse.of(ApiResponseCode.SUCCESS,savedProduct);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.INTERNAL_SERVER_ERROR, null);
+      res = ApiResponse.of(ApiResponseCode.INTERNAL_SERVER_ERROR,null);
     }
     return res;
   }
@@ -82,9 +83,9 @@ public class ApiProductController {
 
     int rows = productSVC.deleteById(pid);
     if(rows == 1){
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS, null);
+      res = ApiResponse.of(ApiResponseCode.SUCCESS,null);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
     }
 
     return res;
@@ -102,9 +103,9 @@ public class ApiProductController {
     int rows = productSVC.updateById(pid, product);
     if(rows == 1){
       Product updatedProduct = productSVC.findById(pid).get();
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS, updatedProduct);
+      res = ApiResponse.of(ApiResponseCode.SUCCESS,updatedProduct);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
     }
 
     return res;
@@ -118,11 +119,10 @@ public class ApiProductController {
 
     int rows = productSVC.deleteByIds(reqDels.getProductIds());
     if(rows > 0){
-      res = ApiResponse.createApiResponse(ApiResponseCode.SUCCESS, "삭제건수 : " + rows);
+      res = ApiResponse.withDetails(ApiResponseCode.SUCCESS, Map.of("cntOfDel",String.valueOf(rows)),null);
     }else{
-      res = ApiResponse.createApiResponse(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
     }
     return res;
   }
-
 }

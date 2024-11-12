@@ -1,5 +1,7 @@
 package com.kh.demo.web.api;
 
+import java.util.Arrays;
+
 public enum ApiResponseCode {
   // 성공 응답
   SUCCESS("S00", "Success"),
@@ -32,4 +34,13 @@ public enum ApiResponseCode {
   public String getRtmsg() {
     return rtmsg;
   }
+
+  // 코드로 enum 조회
+  public static ApiResponseCode of(String code) {
+    return Arrays.stream(values())
+            .filter(rc -> rc.getRtcd().equals(code))
+            .findFirst()
+            .orElse(INTERNAL_SERVER_ERROR);
+  }
+
 }
