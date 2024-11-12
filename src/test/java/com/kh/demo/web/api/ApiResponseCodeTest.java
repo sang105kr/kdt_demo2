@@ -12,9 +12,4 @@ class ApiResponseCodeTest {
     log.info("{}",success);
   }
 
-//  @Test
-//  void toResponse() {
-//    ApiResponse<Object> response = ApiResponseCode.SUCCESS.toResponse(null);
-//    log.info("response={}",response);
-//  }
 }

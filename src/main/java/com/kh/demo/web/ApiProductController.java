@@ -4,12 +4,16 @@ import com.kh.demo.domain.entity.Product;
 import com.kh.demo.domain.product.svc.ProductSVC;
 import com.kh.demo.web.api.ApiResponse;
 import com.kh.demo.web.api.ApiResponseCode;
+import com.kh.demo.web.exception.BusinessException;
 import com.kh.demo.web.req.product.ReqDels;
 import com.kh.demo.web.req.product.ReqSave;
 import com.kh.demo.web.req.product.ReqUpdate;
+import com.kh.demo.web.util.KhUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,10 +62,38 @@ public class ApiProductController {
 
   //상품등록
   @PostMapping
-  public ApiResponse<Product> add(@RequestBody ReqSave reqSave){
+  public ApiResponse<Product> add(
+          @Valid @RequestBody ReqSave reqSave,
+          BindingResult bindingResult){
     log.info("reqSave={}",reqSave);
+
     ApiResponse<Product> res = null;
 
+    // 요청데이터 유효성 체크
+    // 1. 어노테이션 기반의 필드 검증
+    if (bindingResult.hasErrors()) {
+      log.info("bindingResult={}", bindingResult);
+      throw new BusinessException(ApiResponseCode.VALIDATION_ERROR, KhUtil.getValidChkMap(bindingResult));
+    }
+
+    // 2. 코드기반 검증 : 필드 및 글로벌 오류(필드 2개이상)
+    // 2.1 필드 오류 : 상품수량 100 초과 불가
+    if (reqSave.getQuantity() > 100) {
+//      bindingResult.rejectValue("quantity",null,"상품수량 100 초과 불가");
+      bindingResult.rejectValue("quantity","product",new Object[]{100},null);  //product.saveForm.quantity,product.quantity,product
+    }
+
+    // 2.2 글로벌 오류 : 총액(상품수량 * 단가) 1000 만원 초과 불과
+    if (reqSave.getPrice() * reqSave.getQuantity() > 10_000_000L) {
+//      bindingResult.reject(null,"총액(상품수량 * 단가) 1000 만원 초과 불과");
+      bindingResult.reject("totalPrice",new Object[]{1000},null); //totalPrice.saveForm,totalPrice
+    }
+
+    if (bindingResult.hasErrors()) {
+      log.info("bindingResult={}", bindingResult);
+      throw new BusinessException(ApiResponseCode.VALIDATION_ERROR, KhUtil.getValidChkMap(bindingResult));
+    }
+    
     Product product = new Product();
     BeanUtils.copyProperties(reqSave, product);
     Long pid = productSVC.save(product);
@@ -75,6 +107,8 @@ public class ApiProductController {
     }
     return res;
   }
+
+
 
   //상품삭제
   @DeleteMapping("/{pid}")   // delete http://localhost:9080/api/products/123

@@ -5,14 +5,9 @@ import com.kh.demo.web.api.ApiResponseCode;
 import com.kh.demo.web.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.validation.FieldError;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
 // 글로벌 예외 핸들러에서의 사용
@@ -24,27 +19,31 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ApiResponse<Void> handleBusinessException(BusinessException e) {
     log.info("Business exception occurred: {}", e.getMessage());
-    return ApiResponse.of(e.getResponseCode(),null);
+    if(e.getDetails() == null){
+      return ApiResponse.of(e.getResponseCode(),null);
+    }else{
+      return ApiResponse.withDetails(ApiResponseCode.VALIDATION_ERROR,e.getDetails(),null);
+    }
   }
 
   // Validation 예외 - details 포함
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ApiResponse<Object> handleValidationException(MethodArgumentNotValidException e) {
-    Map<String, String> details = e.getBindingResult()
-            .getFieldErrors()
-            .stream()
-            .collect(Collectors.toMap(
-                    FieldError::getField,
-                    FieldError::getDefaultMessage
-            ));
-
-    return ApiResponse.withDetails(
-            ApiResponseCode.VALIDATION_ERROR,
-            details,
-            null
-    );
-  }
+//  @ExceptionHandler(MethodArgumentNotValidException.class)
+//  @ResponseStatus(HttpStatus.BAD_REQUEST)
+//  public ApiResponse<Object> handleValidationException(MethodArgumentNotValidException e) {
+//    Map<String, String> details = e.getBindingResult()
+//            .getFieldErrors()
+//            .stream()
+//            .collect(Collectors.toMap(
+//                    FieldError::getField,
+//                    FieldError::getDefaultMessage
+//            ));
+//
+//    return ApiResponse.withDetails(
+//            ApiResponseCode.VALIDATION_ERROR,
+//            details,
+//            null
+//    );
+//  }
 
   // 일반 예외 - details 없음
   @ExceptionHandler(Exception.class)
