@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 // 글로벌 예외 핸들러에서의 사용
-@RestControllerAdvice
+@RestControllerAdvice   // @RestContoller에서 발생된 예외를 처리
 public class GlobalExceptionHandler {
 
   // 비즈니스 예외 처리
@@ -25,25 +25,6 @@ public class GlobalExceptionHandler {
       return ApiResponse.withDetails(ApiResponseCode.VALIDATION_ERROR,e.getDetails(),null);
     }
   }
-
-  // Validation 예외 - details 포함
-//  @ExceptionHandler(MethodArgumentNotValidException.class)
-//  @ResponseStatus(HttpStatus.BAD_REQUEST)
-//  public ApiResponse<Object> handleValidationException(MethodArgumentNotValidException e) {
-//    Map<String, String> details = e.getBindingResult()
-//            .getFieldErrors()
-//            .stream()
-//            .collect(Collectors.toMap(
-//                    FieldError::getField,
-//                    FieldError::getDefaultMessage
-//            ));
-//
-//    return ApiResponse.withDetails(
-//            ApiResponseCode.VALIDATION_ERROR,
-//            details,
-//            null
-//    );
-//  }
 
   // 일반 예외 - details 없음
   @ExceptionHandler(Exception.class)

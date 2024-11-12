@@ -1,6 +1,5 @@
 package com.kh.demo.web.exception;
 
-import com.kh.demo.web.api.ApiResponse;
 import com.kh.demo.web.api.ApiResponseCode;
 import lombok.Getter;
 
@@ -27,9 +26,9 @@ public class BusinessException extends RuntimeException {
   }
 
   // ApiResponse 생성 헬퍼 메소드
-  public ApiResponse<Object> toResponse() {
-    return details != null
-            ? ApiResponse.withDetails(responseCode, details, null)
-            : ApiResponse.of(responseCode, null);
-  }
+//  public ApiResponse<Object> toResponse() {
+//    return details != null
+//            ? ApiResponse.withDetails(responseCode, details, null)
+//            : ApiResponse.of(responseCode, null);
+//  }
 }

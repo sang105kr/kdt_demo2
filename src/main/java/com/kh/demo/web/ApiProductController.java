@@ -40,9 +40,8 @@ public class ApiProductController {
       Product product = optionalProduct.get();
       res = ApiResponse.of(ApiResponseCode.SUCCESS,product);
     }else{
-      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND,null);
+      throw new BusinessException(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
-
     return res;
   }
 
@@ -55,7 +54,7 @@ public class ApiProductController {
     if (products.size() != 0) {
       res = ApiResponse.of(ApiResponseCode.SUCCESS,products);
     }else{
-      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      throw new BusinessException(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
     return res;
   }
@@ -93,7 +92,7 @@ public class ApiProductController {
       log.info("bindingResult={}", bindingResult);
       throw new BusinessException(ApiResponseCode.VALIDATION_ERROR, KhUtil.getValidChkMap(bindingResult));
     }
-    
+
     Product product = new Product();
     BeanUtils.copyProperties(reqSave, product);
     Long pid = productSVC.save(product);
@@ -103,12 +102,10 @@ public class ApiProductController {
       Product savedProduct = optionalProduct.get();
       res = ApiResponse.of(ApiResponseCode.SUCCESS,savedProduct);
     }else{
-      res = ApiResponse.of(ApiResponseCode.INTERNAL_SERVER_ERROR,null);
+      throw new BusinessException(ApiResponseCode.INTERNAL_SERVER_ERROR,null);
     }
     return res;
   }
-
-
 
   //상품삭제
   @DeleteMapping("/{pid}")   // delete http://localhost:9080/api/products/123
@@ -119,18 +116,45 @@ public class ApiProductController {
     if(rows == 1){
       res = ApiResponse.of(ApiResponseCode.SUCCESS,null);
     }else{
-      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      throw new BusinessException(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
-
     return res;
   }
 
-
   //상품수정
   @PatchMapping("/{pid}")
-  public ApiResponse<Product> update(@PathVariable("pid") Long pid, @RequestBody ReqUpdate reqUpdate){
+  public ApiResponse<Product> update(
+          @PathVariable("pid") Long pid,
+          @Valid @RequestBody ReqUpdate reqUpdate,
+          BindingResult bindingResult){
     log.info("pid={}, reqUpdate={}", pid, reqUpdate);
     ApiResponse<Product> res = null;
+
+    // 요청데이터 유효성 체크
+    // 1. 어노테이션 기반의 필드 검증
+    if (bindingResult.hasErrors()) {
+      log.info("bindingResult={}", bindingResult);
+      throw new BusinessException(ApiResponseCode.VALIDATION_ERROR, KhUtil.getValidChkMap(bindingResult));
+    }
+
+    // 2. 코드기반 검증 : 필드 및 글로벌 오류(필드 2개이상)
+    // 2.1 필드 오류 : 상품수량 100 초과 불가
+    if (reqUpdate.getQuantity() > 100) {
+//      bindingResult.rejectValue("quantity",null,"상품수량 100 초과 불가");
+      bindingResult.rejectValue("quantity","product",new Object[]{100},null);  //product.saveForm.quantity,product.quantity,product
+    }
+
+    // 2.2 글로벌 오류 : 총액(상품수량 * 단가) 1억 초과 불과
+    if (reqUpdate.getPrice() * reqUpdate.getQuantity() > 100_000_000L) {
+//      bindingResult.reject(null,"총액(상품수량 * 단가) 1억 만원 초과 불과");
+      bindingResult.reject("totalPrice",new Object[]{10_000},null); //totalPrice.saveForm,totalPrice
+    }
+
+    if (bindingResult.hasErrors()) {
+      log.info("bindingResult={}", bindingResult);
+      throw new BusinessException(ApiResponseCode.VALIDATION_ERROR, KhUtil.getValidChkMap(bindingResult));
+    }
+
 
     Product product = new Product();
     BeanUtils.copyProperties(reqUpdate, product);
@@ -139,9 +163,8 @@ public class ApiProductController {
       Product updatedProduct = productSVC.findById(pid).get();
       res = ApiResponse.of(ApiResponseCode.SUCCESS,updatedProduct);
     }else{
-      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      throw new BusinessException(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
-
     return res;
   }
 
@@ -155,7 +178,7 @@ public class ApiProductController {
     if(rows > 0){
       res = ApiResponse.withDetails(ApiResponseCode.SUCCESS, Map.of("cntOfDel",String.valueOf(rows)),null);
     }else{
-      res = ApiResponse.of(ApiResponseCode.ENTITY_NOT_FOUND, null);
+      throw new BusinessException(ApiResponseCode.ENTITY_NOT_FOUND,null);
     }
     return res;
   }
