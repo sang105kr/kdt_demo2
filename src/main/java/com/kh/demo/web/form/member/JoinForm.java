@@ -8,6 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class JoinForm {
+//  @NotBlank(message = "이메일은 필수!")
   private String email;           //  EMAIL	VARCHAR2(50 BYTE)
   private String passwd;          //  PASSWD	VARCHAR2(12 BYTE)
   private String tel;             //  TEL	VARCHAR2(13 BYTE)

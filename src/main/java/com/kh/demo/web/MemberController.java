@@ -35,7 +35,7 @@ public class MemberController {
     Member member = new Member();
     BeanUtils.copyProperties(joinForm,member);
 
-    Member joinedMember = memberSVC.join(member);
+//    Member joinedMember = memberSVC.join(member);
 
     return "redirect:/login";
   }
