@@ -31,7 +31,9 @@ public class ProductController {
   //등록양식
   @GetMapping("/add")
   public String addForm(Model model){
+
     model.addAttribute("saveForm",new SaveFormOld());
+
     return "/product/add";//상품등록화면
   }
   //등록처리

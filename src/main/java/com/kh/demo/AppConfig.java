@@ -1,11 +1,43 @@
 package com.kh.demo;
 
+import com.kh.demo.web.interceptor.ExecutionTimeInterceptor;
+import com.kh.demo.web.interceptor.LoginCheckInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig implements WebMvcConfigurer {
+
+  private final LoginCheckInterceptor loginCheckInterceptor;
+  private final ExecutionTimeInterceptor executionTimeInterceptor;
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    //인증체크
+    registry.addInterceptor(loginCheckInterceptor)
+            .order(2) //인터셉터 실행 순서 지정
+            .addPathPatterns("/**")   // 루트부터 하위경로 모두 인터셉터에 포함
+            .excludePathPatterns(              // 제외패턴
+                    "/",              // 초기화면
+                    "/login",
+                    "/logout",
+                    "/members/join",
+                    "/css/**",
+                    "/js/**",
+                    "/img/**",
+                    "/api/**",
+                    "/test/**",
+                    "/error/**"
+            );
+    //handler 실행시간 측정
+    registry.addInterceptor(executionTimeInterceptor)
+            .order(1)
+            .addPathPatterns("/**");
+  }
 
   @Override
   public void addCorsMappings(CorsRegistry registry) {
