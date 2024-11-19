@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    .field-err {
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h3>회원가입</h3>
+  <form action="" method="POST" th:object="${joinForm}">
+    <div>
+      <label th:for="email">이메일</label><input type="text" th:field="*{email}">
+      <div class="field-err" th:each="err : ${#fields.errors('email')}">
+        <span th:text="${err}"></span>
+      </div>
+    </div>
+    <div><label th:for="passwd">비밀번호</label><input type="password" th:field="*{passwd}"></div>
+    <div><label th:for="passwdChk">비밀번호확인</label><input type="password" th:field="*{passwdChk}"></div>
+    <div><label th:for="tel">전화번호</label><input type="text" th:field="*{tel}"></div>
+    <div><label th:for="nickname">별칭</label><input type="text" th:field="*{nickname}"></div>
+    <div>
+      <div><span>성별</span></div>
+      <div>            
+        <label th:for="${#ids.next('gender')}">남자</label><input type="radio" value="남자" th:field="*{gender}">
+        <label th:for="${#ids.next('gender')}">여자</label><input type="radio" value="여자" th:field="*{gender}">
+      </div>
+    </div>
+    <div>
+      <div><span>취미</span></div>
+      <div>
+        <th:block th:each="ele : ${codes}">
+          <label th:for="${#ids.next('hobby')}" th:text="${ele.decode}">독서</label><input type="checkbox" th:value="${ele.codeId}" th:field="*{hobby}">
+        </th:block>
+      </div>
+    </div>
+    <div>
+      <label th:for="region">지역</label>
+      <select th:field="*{region}">
+        <option value="" selected>==선택==</option>
+        <th:block th:each="ele : ${regions}">
+          <option th:value="${ele.codeId}" th:text="${ele.decode}">서울</option>
+        </th:block>
+      </select>
+    </div>
+    <div><button>가입</button><button>취소</button></div>
+  </form>
+</body>
+</html>
