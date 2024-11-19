@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
-      th:data-member-id="${session.loginOkMember?.memberId}"
-      th:data-member-email="${session.loginOkMember?.email}"
-      th:data-member-nickname="${session.loginOkMember?.nickname}"
+      th:data-member-id="${session.loginMember?.memberId}"
+      th:data-member-email="${session.loginMember?.email}"
+      th:data-member-nickname="${session.loginMember?.nickname}"
 
 >
 <head>
@@ -11,15 +11,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>초기화면(tymeleaf)</title>
   <script type="module" th:inline="javascript">
-    let memberId = [[${session.loginOkMember?.nickname}]]
-    let member =  [[${session.loginOkMember}]]
+    let memberId = [[${session.loginMember?.nickname}]]
+    let member =  [[${session.loginMember}]]
     console.log(memberId,member);
   </script>
 </head>
 <body>
 <h3 th:if="${!session.isEmpty()}">
-  <p><span th:text="${session.loginOkMember.nickname}"></span><span>님 반갑습니다</span></p>
-  <p><span>[[${session.loginOkMember.nickname}]]</span><span>님 반갑습니다</span></p>
+  <p><span th:text="${session.loginMember.nickname}"></span><span>님 반갑습니다</span></p>
+  <p><span>[[${session.loginMember.nickname}]]</span><span>님 반갑습니다</span></p>
   <th:block th:with="x='Hello <b>Spring!</b>'">
     <p>[[${x}]]</p> <!-- unscape-->
     <p>[(${x})]</p>

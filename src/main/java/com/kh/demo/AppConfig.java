@@ -50,4 +50,5 @@ public class AppConfig implements WebMvcConfigurer {
             .allowedMethods("*")                    //모든 Method
             .maxAge(3000);                            //캐쉬시간
   }
+
 }

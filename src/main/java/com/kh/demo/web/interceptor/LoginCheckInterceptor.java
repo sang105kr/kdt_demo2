@@ -27,7 +27,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
     //요청 url에 쿼리스트링이 없는경우
     if(request.getQueryString() == null){
-      redirectUrl = requestURI;
+      redirectUrl = requestURI;  // /products
     }else{
       //요청 url에 쿼리스트링이 있는 경우
       String queryString = URLEncoder.encode(request.getQueryString(), "UTF-8"); // a=1&b=2

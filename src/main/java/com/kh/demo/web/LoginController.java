@@ -45,10 +45,10 @@ public class LoginController {
     }
     //2) 비밀번호 일치여부 체크
     Optional<Member> optionalMember = memberDAO.findByEmail(loginForm.getEmail());
-    Member loginMember = optionalMember.get();
-    log.info("loginMember={}",loginMember);
+    Member member = optionalMember.get();
+    log.info("member={}",member);
     
-    if(!loginForm.getPasswd().equals(loginMember.getPasswd())){
+    if(!loginForm.getPasswd().equals(member.getPasswd())){
       bindingResult.rejectValue("passwd","invalidMember");
       return "/login/loginForm";
     }
@@ -57,12 +57,12 @@ public class LoginController {
     HttpSession session = request.getSession(true);
 
     //4) 세션에 회원정보 저장
-    LoginMember loginOkMember = new LoginMember(
-            loginMember.getMemberId(),
-            loginMember.getEmail(),
-            loginMember.getNickname(),
-            loginMember.getGender());
-    session.setAttribute("loginOkMember",loginOkMember);
+    LoginMember loginMember = new LoginMember(
+            member.getMemberId(),
+            member.getEmail(),
+            member.getNickname(),
+            member.getGender());
+    session.setAttribute("loginMember",loginMember);
 
     return "redirect:"+redirectUrl;   //로그인 전 요청 URL로 이동
   }
