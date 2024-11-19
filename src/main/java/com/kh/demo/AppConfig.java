@@ -35,7 +35,8 @@ public class AppConfig implements WebMvcConfigurer {
                     "/img/**",
                     "/api/**",
                     "/test/**",
-                    "/error/**"
+                    "/error/**",
+                    "/webjars/**"
             );
     //handler 실행시간 측정
     registry.addInterceptor(executionTimeInterceptor)

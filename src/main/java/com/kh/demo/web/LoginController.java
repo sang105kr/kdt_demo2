@@ -61,7 +61,7 @@ public class LoginController {
             member.getMemberId(),
             member.getEmail(),
             member.getNickname(),
-            member.getGender());
+            member.getGubun());
     session.setAttribute("loginMember",loginMember);
 
     return "redirect:"+redirectUrl;   //로그인 전 요청 URL로 이동
