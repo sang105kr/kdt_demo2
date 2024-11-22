@@ -39,7 +39,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     HttpSession session = request.getSession(false);
 
     //세션이 없거나 loginOkMember정보가 없으면 로그인 페이지로 리다이렉트
-    if (session == null || session.getAttribute("loginOkMember") == null) {
+    if (session == null || session.getAttribute("loginMember") == null) {
 //      log.info("미인증 요청");
       response.sendRedirect("/login?redirectUrl=" + redirectUrl);  // 302 GET http://localhost:9080/login
     }

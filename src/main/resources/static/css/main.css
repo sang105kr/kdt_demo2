@@ -3,8 +3,8 @@
 /*-- 전체 레이아웃  시작--*/
 .wrap {
   display: grid;
-  grid-template-columns: 1fr 600px 1fr;
-  grid-template-rows: 50px 150px 50px auto 70px;
+  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-rows: 50px auto 50px auto 70px;
   grid-template-areas:
     "tl   tc      tr"
     ".    banner  ."
@@ -150,3 +150,9 @@
   color:#fff;
 }
 /*-- 푸터 끝 --*/
+
+#content .main input,
+#content .main button {
+    outline: 1px solid #000;
+    border: 1px solid #000;
+}
