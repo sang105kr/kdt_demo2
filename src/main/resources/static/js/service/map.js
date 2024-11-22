@@ -125,6 +125,23 @@ function placesSearchCB (data, status, pagination) {
       }else{
         wrapEle.replaceChild(searchResultEle, document.querySelector('.search_result'));
       }
+
+      // 검색 장소 위도와 경도의 평균으로 지도맵 이동
+      // 위,경도 합계 계산
+      const {lat, lng} = data.reduce((acc,place)=> {
+        acc.lat += parseFloat(place.y); //위도 누적
+        acc.lng += parseFloat(place.x); //경도 누적
+        return acc;
+      },{lat:0,lng:0});
+      console.log(lat,lng);
+
+      // 위,경도 평균 계산
+      const avgOfLat = lat / data.length;
+      const avgOfLng = lng / data.length;
+
+      console.log(avgOfLat,avgOfLng);
+      mymap.map.setCenter(new N.LatLng(avgOfLat,avgOfLng));  // 중심 위치로 이동
+      mymap.map.setZoom(16); //확대
   }
 }
 
