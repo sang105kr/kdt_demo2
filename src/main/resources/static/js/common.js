@@ -1,4 +1,7 @@
-// 문자열의 바이트 길이 반환
+
+/*-----------------------------------------------------------------------*
+/* 문자열의 바이트 길이 반환
+/*-----------------------------------------------------------------------*/
 function getBytesSize(str){
   const encoder = new TextEncoder();
   const byteArray = encoder.encode(str);
@@ -107,4 +110,24 @@ const ajax = {
   },
 };
 
-export { getBytesSize, ajax };
+/*-----------------------------------------------------------------------*
+/* 자바스크립트 로딩하기
+/*-----------------------------------------------------------------------*/
+function loadScript(url){
+    return new Promise((resolve,reject)=>{
+        //비동기 코드
+        const scriptEle = document.createElement('script');
+        scriptEle.src = url;
+        scriptEle.defer = true;
+
+        //로딩 성공시
+        scriptEle.addEventListener('load',e=>resolve(`${url} 로딩성공!`));
+        //로딩 실패시
+        scriptEle.addEventListener('error',e=>reject( new Error(`${url} 로딩실패!`)));
+
+        document.head.appendChild(scriptEle);
+    });
+}
+
+
+export { getBytesSize, ajax, loadScript };

@@ -283,8 +283,8 @@ async function fetchLocation() {
 }
 
 function main() {
-  // 지도 초기화
-  fetchLocation();
+    // 지도 초기화
+    fetchLocation();
 }
 
 window.navermap_authFailure = () => {
