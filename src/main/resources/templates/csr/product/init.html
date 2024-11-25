@@ -324,16 +324,14 @@
     divEle.setAttribute('id','reply_pagenation');
     document.body.appendChild(divEle);
 
-    
     (async ()=>{
       const url = '/api/products/totalCnt';
       try {
         const result = await ajax.get(url);
-        console.log('body = ' + result.body);
         
-        const totalRecords = result.body;
-        const recordsPerPage = 10;
-        const pagesPerPage = 10;
+        const totalRecords = result.totalRec; // 전체 레코드수
+        const recordsPerPage = 10;            // 페이지당 레코드수
+        const pagesPerPage = 10;              // 한페이지당 페이지수
 
         const handlePageChange = (reqPage)=>{
           return getProducts(reqPage,recordsPerPage);
@@ -347,12 +345,12 @@
         pagination.setPagesPerPage(pagesPerPage);
 
         // 첫페이지 가져오기
-        pagination.handleFirstClick();        
+        pagination.handleFirstClick();   
+
       }catch(err){
         console.error(err);
       }
     })();
-
 
   </script>
 </head>

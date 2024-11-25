@@ -200,11 +200,14 @@ public class ApiProductController {
     return res;
   }
 
+  // 전체레코드수 가져오기
   @GetMapping("/totalCnt")
   public ApiResponse<Integer> totalCnt(){
     ApiResponse<Integer> res = null;
     Integer totalRec =  productSVC.totalRec();
-    res = ApiResponse.of(ApiResponseCode.SUCCESS,totalRec);
+
+    res = ApiResponse.of(ApiResponseCode.SUCCESS, null,totalRec);
+
     return res;
   }
 }
