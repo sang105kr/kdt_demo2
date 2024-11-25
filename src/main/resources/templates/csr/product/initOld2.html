@@ -12,7 +12,7 @@
     .fieldSuccess { border:1px solid green; }
   </style>
   <script type="module">
-    import { ajax,  PaginationUI} from '/js/common.js';
+    import { ajax } from '/js/common.js';
 
     //상품등록
     const addProduct = async product => {
@@ -94,14 +94,13 @@
     };
 
     //상품목록
-    const getProducts = async (reqPage,reqRec) => {
+    const getProducts = async () => {
       try {
-        const url = `/api/products?reqPage=${reqPage}&reqRec=${reqRec}`;
+        const url = `/api/products`;
         const result = await ajax.get(url);
         console.log(result);
         if (result.header.rtcd === 'S00') {
           displayProductList(result.body);
-
         } else {
           console.log(result.header.rtmsg);
         }
@@ -109,6 +108,16 @@
         console.error(err);
       }
     };
+
+    // //목록버튼
+    // const $listBtn = document.createElement('button'); // <button></button>
+    // $listBtn.textContent = '목록가져오기'; //<button>목록가져오기</button>
+    // $listBtn.setAttribute('id', 'btnList'); //<button id='btnList'>목록가져오기</button>
+    // document.body.appendChild($listBtn);
+    // btnList.addEventListener('click', getProducts);
+
+    const $list = document.createElement('div');
+    document.body.appendChild($list);
 
     //상품등록 화면
     function displayForm() {
@@ -274,7 +283,6 @@
 
     //상품목록 화면
     function displayProductList(products) {
-      console.log($list);
       const makeTr = products => {
         const $tr = products
           .map(
@@ -314,46 +322,7 @@
   
     displayReadForm(); //조회
     displayForm();//등록
-    //getProducts();//목록
-
-    const $list = document.createElement('div');
-    $list.setAttribute('id','list')
-    document.body.appendChild($list);
-
-    const divEle = document.createElement('div');
-    divEle.setAttribute('id','reply_pagenation');
-    document.body.appendChild(divEle);
-
-    
-    (async ()=>{
-      const url = '/api/products/totalCnt';
-      try {
-        const result = await ajax.get(url);
-        console.log('body = ' + result.body);
-        
-        const totalRecords = result.body;
-        const recordsPerPage = 10;
-        const pagesPerPage = 10;
-
-        const handlePageChange = (reqPage)=>{
-          return getProducts(reqPage,recordsPerPage);
-        };
-
-        // Pagination UI 초기화
-        var pagination = new PaginationUI('reply_pagenation', handlePageChange);
-        
-        pagination.setTotalRecords(totalRecords);
-        pagination.setRecordsPerPage(recordsPerPage);
-        pagination.setPagesPerPage(pagesPerPage);
-
-        // 첫페이지 가져오기
-        pagination.handleFirstClick();        
-      }catch(err){
-        console.error(err);
-      }
-    })();
-
-
+    getProducts();//목록
   </script>
 </head>
 <body></body>

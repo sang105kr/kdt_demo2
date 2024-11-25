@@ -199,4 +199,12 @@ public class ApiProductController {
     }
     return res;
   }
+
+  @GetMapping("/totalCnt")
+  public ApiResponse<Integer> totalCnt(){
+    ApiResponse<Integer> res = null;
+    Integer totalRec =  productSVC.totalRec();
+    res = ApiResponse.of(ApiResponseCode.SUCCESS,totalRec);
+    return res;
+  }
 }
