@@ -192,7 +192,6 @@ class PaginationUI {
   // 총건수 설정
   setTotalRecords(totalRecords) {
       this.state.totalRecords = totalRecords;
-      this.render();
   }
 
   createButton(label, onClick, isActive = false, isDisabled = false) {
