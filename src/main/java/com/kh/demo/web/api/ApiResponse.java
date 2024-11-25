@@ -13,12 +13,20 @@ import java.util.Map;
 @ToString
 public class ApiResponse<T> {
   private Header header;    //응답헤더
-  private T body;          //응답바디
-  private int totalCnt;    //총건수
+  private T body;           //응답바디
+  private int recCnt;       //레코드건수
+  private int totalCnt;     //총건수
 
   private ApiResponse(Header header, T body, int totalCnt) {
     this.header = header;
     this.body = body;
+    this.totalCnt = totalCnt;
+  }
+
+  private ApiResponse(Header header, T body, int recCnt,int totalCnt) {
+    this.header = header;
+    this.body = body;
+    this.recCnt = recCnt;
     this.totalCnt = totalCnt;
   }
 
@@ -52,7 +60,16 @@ public class ApiResponse<T> {
     return new ApiResponse<>(
             new Header(responseCode.getRtcd(), responseCode.getRtmsg()),
             body,
-            calculateTotalCount(body)
+            calculateRecCount(body)
+    );
+  }
+
+  public static <T> ApiResponse<T> of(ApiResponseCode responseCode, T body, int totalCnt) {
+    return new ApiResponse<>(
+            new Header(responseCode.getRtcd(), responseCode.getRtmsg()),
+            body,
+            calculateRecCount(body),
+            totalCnt
     );
   }
 
@@ -64,12 +81,24 @@ public class ApiResponse<T> {
     return new ApiResponse<>(
             new DetailHeader(responseCode.getRtcd(), responseCode.getRtmsg(), details),
             body,
-            calculateTotalCount(body)
+            calculateRecCount(body)
+    );
+  }
+  public static <T> ApiResponse<T> withDetails(
+          ApiResponseCode responseCode,
+          Map<String, String> details,
+          T body,
+          int totalCnt) {
+    return new ApiResponse<>(
+            new DetailHeader(responseCode.getRtcd(), responseCode.getRtmsg(), details),
+            body,
+            calculateRecCount(body),
+            totalCnt
     );
   }
 
-  // 5. totalCnt 계산 로직
-  private static <T> int calculateTotalCount(T body) {
+  // 5. recCnt 계산 로직
+  private static <T> int calculateRecCount(T body) {
     if (body == null) return 0;
 
     if (ClassUtils.isAssignable(Collection.class, body.getClass())) {

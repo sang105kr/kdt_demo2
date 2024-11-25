@@ -12,6 +12,8 @@ public interface ProductSVC {
   // 목록
   List<Product> findAll();
 
+  List<Product> findAll(int reqPage,int reqRec);
+
   //조회
   Optional<Product> findById(Long productId);
 
@@ -23,4 +25,7 @@ public interface ProductSVC {
 
   //여러건 삭제
   int deleteByIds(List<Long> productIds);
+
+  //총 레코드 건수
+  int totalRec();
 }

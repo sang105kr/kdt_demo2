@@ -22,23 +22,23 @@ public class AppConfig implements WebMvcConfigurer {
     // * 는 0개 이상의 문자와 일치,  /api/*  => /api/products  (O), /api/members  (O)    /api/products/123 (x)
     // ** 는 0개 이상의 경로와 일치  /api/** => /api/products  (O), /api/members  (O)    /api/products/123 (O)
     // ? 는 1개의 문자와 일치       /api/products/? => /api/products/1  (O), /api/products/12 (X)
-    registry.addInterceptor(loginCheckInterceptor)
-            .order(2) //인터셉터 실행 순서 지정
-            .addPathPatterns("/**")   // 루트부터 하위경로 모두 인터셉터에 포함
-            .excludePathPatterns(              // 제외패턴
-                    "/",              // 초기화면
-                    "/login",
-                    "/logout",
-                    "/members/join",
-                    "/css/**",
-                    "/js/**",
-                    "/img/**",
-                    "/api/**",
-                    "/test/**",
-                    "/error/**",
-                    "/webjars/**",
-                    "/services/**"
-            );
+//    registry.addInterceptor(loginCheckInterceptor)
+//            .order(2) //인터셉터 실행 순서 지정
+//            .addPathPatterns("/**")   // 루트부터 하위경로 모두 인터셉터에 포함
+//            .excludePathPatterns(              // 제외패턴
+//                    "/",              // 초기화면
+//                    "/login",
+//                    "/logout",
+//                    "/members/join",
+//                    "/css/**",
+//                    "/js/**",
+//                    "/img/**",
+//                    "/api/**",
+//                    "/test/**",
+//                    "/error/**",
+//                    "/webjars/**",
+//                    "/services/**"
+//            );
     //handler 실행시간 측정
     registry.addInterceptor(executionTimeInterceptor)
             .order(1)

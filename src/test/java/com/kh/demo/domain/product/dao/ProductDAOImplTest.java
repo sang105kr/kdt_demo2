@@ -2,7 +2,6 @@ package com.kh.demo.domain.product.dao;
 
 import com.kh.demo.domain.entity.Product;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest
@@ -41,6 +42,17 @@ public class ProductDAOImplTest {
   }
 
   @Test
+  @DisplayName("요청페지 상품목록")
+  void findReqPage(){
+    int reqPage = 3; //요청페이지
+    int reqRec = 10; //한페이지당 보여줄 레코드 수
+    List<Product> list = productDAO.findAll(reqPage,reqRec);
+    for (Product product : list) {
+      log.info("product={}",product);
+    }
+  }
+
+  @Test
   @DisplayName("상품단건조회")
   void findById(){
     Long productId = 2L;
@@ -49,9 +61,9 @@ public class ProductDAOImplTest {
     Product findedProduct = product.orElseThrow();  
 //    log.info("findedProduct={}",findedProduct);
 
-    Assertions.assertThat(findedProduct.getPname()).isEqualTo("모니터");
-    Assertions.assertThat(findedProduct.getQuantity()).isEqualTo(5L);
-    Assertions.assertThat(findedProduct.getPrice()).isEqualTo(500000L);
+    assertThat(findedProduct.getPname()).isEqualTo("모니터");
+    assertThat(findedProduct.getQuantity()).isEqualTo(5L);
+    assertThat(findedProduct.getPrice()).isEqualTo(500000L);
   }
 
   @Test
@@ -59,7 +71,7 @@ public class ProductDAOImplTest {
   void deleteById(){
     Long productId = 37L;
     int rows = productDAO.deleteById(productId);
-    Assertions.assertThat(rows).isEqualTo(1);
+    assertThat(rows).isEqualTo(1);
   }
 
   @Test
@@ -77,9 +89,9 @@ public class ProductDAOImplTest {
 
     Product findedProduct = optionalProduct.orElseThrow();
 
-    Assertions.assertThat(findedProduct.getPname()).isEqualTo("볼펜4");
-    Assertions.assertThat(findedProduct.getQuantity()).isEqualTo(40L);
-    Assertions.assertThat(findedProduct.getPrice()).isEqualTo(4000L);
+    assertThat(findedProduct.getPname()).isEqualTo("볼펜4");
+    assertThat(findedProduct.getQuantity()).isEqualTo(40L);
+    assertThat(findedProduct.getPrice()).isEqualTo(4000L);
   }
 
   @Test
@@ -87,7 +99,29 @@ public class ProductDAOImplTest {
   void deleteByIds(){
     List<Long> productIds = List.of(41L, 42L, 43L);
     int rows = productDAO.deleteByIds(productIds);
-    Assertions.assertThat(rows).isEqualTo(3);
+    assertThat(rows).isEqualTo(3);
     log.info("rows={}", rows);
+  }
+
+
+  @Test
+  @DisplayName("복수상품등록")
+  void saveProducts(){
+
+    for (int i = 0; i < 215; i++) {
+      Product product = new Product();
+      product.setPname("컴퓨터_"+i);
+      product.setPrice(1000000L);
+      product.setQuantity((long)(i+1));
+      Long pid = productDAO.save(product);
+      log.info("상품아이디={}",pid);
+    }
+  }
+  @Test
+  @DisplayName("총건수")
+  void totalRec(){
+    int totalRec = productDAO.totalRec();
+    assertThat(totalRec).isEqualTo(215);
+//    log.info("totalRec=" + totalRec);
   }
 }

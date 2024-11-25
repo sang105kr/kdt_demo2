@@ -27,6 +27,11 @@ public class ProductSVCImpl implements ProductSVC{
   }
 
   @Override
+  public List<Product> findAll(int reqPage, int reqRec) {
+    return productDAO.findAll(reqPage,reqRec);
+  }
+
+  @Override
   public Optional<Product> findById(Long productId) {
     return productDAO.findById(productId);
   }
@@ -44,5 +49,10 @@ public class ProductSVCImpl implements ProductSVC{
   @Override
   public int deleteByIds(List<Long> productIds) {
     return productDAO.deleteByIds(productIds);
+  }
+
+  @Override
+  public int totalRec() {
+    return productDAO.totalRec();
   }
 }
