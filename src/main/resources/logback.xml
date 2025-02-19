@@ -1,0 +1,61 @@
+<configuration>
+    <!-- 변수 선언 -->
+    <property name="LOG_PATH" value="d:\kdt_2\projects\demo\log"/>
+    <property name="LOG_PATTERN" value="▶ %d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger[%method:%line] - %msg%n"/>
+    <!-- [%method:%line] : 어떤 메소드에 어떤 라인에서 찍혔는지 %msg%n : 찍고 싶은 로그 -->
+
+    <!-- 콘솔 출력 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 파일 출력 (현재 로그 기록)-->
+    <!--appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}\application-file.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender-->
+
+    <!-- 파일 출력 (특정 조건(시간, 크기 등)에 따라 파일 교체)-->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}\application-rolling.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--fileNamePattern>application.%d{yyyy-MM-dd_HH-mm}.log.gz</fileNamePattern-->
+            <fileNamePattern>${LOG_PATH}\application-rolling.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>5</maxHistory><!--보관할 파일의 최대갯수-->
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- log4jdbc-log4j2 설정-->
+    <!-- 실행된 SQL 문장을 출력-->
+    <logger name="jdbc.sqlonly" level="DEBUG" />
+    <!-- SQL 쿼리 실행 시간 로그를 기록(성능분석) -->
+    <logger name="jdbc.sqltiming" level="INFO" />
+    <!-- 데이터베이스에 대한 감사 로그를 기록 -->
+    <logger name="jdbc.audit" level="WARN"/>
+    <!-- ResultSet에 대한 로그를 테이블 형식으로 기록 -->
+    <logger name="jdbc.resultsettable" level="INFO" />
+    <!-- JDBC 연결에 대한 로그를 기록 -->
+    <logger name="jdbc.connection" level="DEBUG" />
+
+    <!-- Logstash로 전송할 Appender -->
+<!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <destination>localhost:5044</destination>-->
+<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
+<!--    </appender>-->
+
+    <!-- Logger 설정 -->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <!--appender-ref ref="FILE" /-->
+        <appender-ref ref="ROLLING_FILE" />
+<!--        <appender-ref ref="LOGSTASH" />-->
+    </root>
+</configuration>

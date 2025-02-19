@@ -138,8 +138,8 @@ class PaginationState {
       this.totalRecords = totalRecords; // 전체 레코드수
       this.recordsPerPage = recordsPerPage; //페이지당 레코드수
       this.pagesPerPage = pagesPerPage; //페이지당 페이지수
-      this.currentPage = 1; //현재 페이지
-      this.currentPageGroupStart = 1; //현재 페이지의 시작페이지
+      this.currentPage = 1; //현재 페이지 : 현재 페이지의 스타일을 달리주기위해 필요
+      this.currentPageGroupStart = 1; //현재 페이지의 시작페이지 : 한페이지의 시작페이지와 끝페이지 계산에 필요
   }
 
   // 전체 페이지수 계산
@@ -173,6 +173,9 @@ class PaginationState {
 }
 
 class PaginationUI {
+
+  // 첫번째 매개변수 : 페이지를 표시할 컨테이너를 id값으로 지정
+  // 두번째 매개변수 : 목록을 표시하는 함수 지정 ( 함수의 매개변수 : 요청페이지)
   constructor(containerId, onPageChange) {
       this.container = document.getElementById(containerId); // 페이징 표시할 요소
       this.onPageChange = onPageChange;                      // 페이지 갱신시 표시할 목록을 표시할 함수
@@ -199,7 +202,7 @@ class PaginationUI {
       button.textContent = label;
       button.addEventListener('click', onClick);
       button.disabled = isDisabled;
-      if (isActive) button.classList.add('active');
+      if (isActive) button.classList.add('active'); // 현재 페이지 버튼 스탈을 다르게 반영하기 위함
       return button;
   }
 

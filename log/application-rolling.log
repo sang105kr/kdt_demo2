@@ -1,0 +1,199 @@
+▶ 2025-02-19 13:49:05 INFO  [background-preinit] org.hibernate.validator.internal.util.Version[<clinit>:21] - HV000001: Hibernate Validator 8.0.1.Final
+▶ 2025-02-19 13:49:05 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarting:50] - Starting DemoApplication using Java 17.0.13 with PID 10824 (D:\kdt_2\projects\demo\out\production\classes started by kh502 in D:\kdt_2\projects\demo)
+▶ 2025-02-19 13:49:05 INFO  [restartedMain] com.kh.demo.DemoApplication[logStartupProfileInfo:654] - No active profile set, falling back to 1 default profile: "default"
+▶ 2025-02-19 13:49:05 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls[logTo:252] - The Class-Path manifest attribute in C:\Users\kh502\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/kh502/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+▶ 2025-02-19 13:49:05 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+▶ 2025-02-19 13:49:05 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+▶ 2025-02-19 13:49:08 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+▶ 2025-02-19 13:49:08 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:211] - Finished Spring Data repository scanning in 51 ms. Found 0 JPA repository interfaces.
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[initialize:111] - Tomcat initialized with port 9080 (http)
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Initializing ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.apache.catalina.core.StandardService[log:173] - Starting service [Tomcat]
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.apache.catalina.core.StandardEngine[log:173] - Starting Servlet engine: [Apache Tomcat/10.1.31]
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/][log:173] - Initializing Spring embedded WebApplicationContext
+▶ 2025-02-19 13:49:09 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext[prepareWebApplicationContext:296] - Root WebApplicationContext: initialization completed in 4199 ms
+▶ 2025-02-19 13:49:10 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:49:10 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:109] - HikariPool-1 - Starting...
+▶ 2025-02-19 13:49:10 WARN  [restartedMain] com.zaxxer.hikari.util.DriverDataSource[<init>:68] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+▶ 2025-02-19 13:49:11 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool[checkFailFast:554] - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@363c69ee
+▶ 2025-02-19 13:49:11 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:122] - HikariPool-1 - Start completed.
+▶ 2025-02-19 13:49:11 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper[logPersistenceUnitInformation:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+▶ 2025-02-19 13:49:11 INFO  [restartedMain] org.hibernate.Version[logVersion:44] - HHH000412: Hibernate ORM core version 6.5.3.Final
+▶ 2025-02-19 13:49:11 INFO  [restartedMain] org.hibernate.cache.internal.RegionFactoryInitiator[initiateService:50] - HHH000026: Second-level cache disabled
+▶ 2025-02-19 13:49:12 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo[addTransformer:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+▶ 2025-02-19 13:49:13 WARN  [restartedMain] org.hibernate.dialect.Dialect[checkVersion:354] - HHH000511: The 18.0.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+▶ 2025-02-19 13:49:14 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator[initiateService:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+▶ 2025-02-19 13:49:14 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean[buildNativeEntityManagerFactory:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+▶ 2025-02-19 13:49:14 INFO  [restartedMain] com.kh.demo.domain.common.svc.CodeSVCImpl[getA02Code:28] - getA02Code() 수행됨!
+▶ 2025-02-19 13:49:14 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[query:721] - Executing prepared SQL query
+▶ 2025-02-19 13:49:14 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[execute:650] - Executing prepared SQL statement [select code_id,decode   from code  where pcode_id = ?    and useyn = 'Y' ]
+▶ 2025-02-19 13:49:14 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:49:14 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'CODE_ID' to property 'codeId' of type 'java.lang.String'
+▶ 2025-02-19 13:49:14 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'DECODE' to property 'decode' of type 'java.lang.String'
+▶ 2025-02-19 13:49:14 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration[openEntityManagerInViewInterceptor:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+▶ 2025-02-19 13:49:15 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer[startServer:59] - LiveReload server is running on port 35729
+▶ 2025-02-19 13:49:15 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Starting ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:49:15 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[start:243] - Tomcat started on port 9080 (http) with context path '/'
+▶ 2025-02-19 13:49:15 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarted:56] - Started DemoApplication in 11.244 seconds (process running for 13.01)
+▶ 2025-02-19 13:49:56 INFO  [http-nio-9080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/][log:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+▶ 2025-02-19 13:49:56 INFO  [http-nio-9080-exec-1] org.springframework.web.servlet.DispatcherServlet[initServletBean:532] - Initializing Servlet 'dispatcherServlet'
+▶ 2025-02-19 13:49:56 INFO  [http-nio-9080-exec-1] org.springframework.web.servlet.DispatcherServlet[initServletBean:554] - Completed initialization in 2 ms
+▶ 2025-02-19 13:50:49 ERROR [http-nio-9080-exec-8] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet][log:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8000/wordcloud": Connection refused: connect] with root cause
+java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:579)
+	at java.base/sun.nio.ch.Net.connect(Net.java:568)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:593)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/java.net.Socket.connect(Socket.java:583)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:281)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1323)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1256)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1142)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1071)
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:404)
+	at com.kh.demo.web.VisualizationController.getWordCloud(VisualizationController.java:28)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+▶ 2025-02-19 13:53:59 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean[destroy:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+▶ 2025-02-19 13:53:59 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource[close:349] - HikariPool-1 - Shutdown initiated...
+▶ 2025-02-19 13:53:59 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource[close:351] - HikariPool-1 - Shutdown completed.
+▶ 2025-02-19 13:54:27 INFO  [background-preinit] org.hibernate.validator.internal.util.Version[<clinit>:21] - HV000001: Hibernate Validator 8.0.1.Final
+▶ 2025-02-19 13:54:27 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarting:50] - Starting DemoApplication using Java 17.0.13 with PID 20564 (D:\kdt_2\projects\demo\out\production\classes started by kh502 in D:\kdt_2\projects\demo)
+▶ 2025-02-19 13:54:27 INFO  [restartedMain] com.kh.demo.DemoApplication[logStartupProfileInfo:654] - No active profile set, falling back to 1 default profile: "default"
+▶ 2025-02-19 13:54:27 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls[logTo:252] - The Class-Path manifest attribute in C:\Users\kh502\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/kh502/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+▶ 2025-02-19 13:54:27 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+▶ 2025-02-19 13:54:27 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+▶ 2025-02-19 13:54:30 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+▶ 2025-02-19 13:54:30 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:211] - Finished Spring Data repository scanning in 80 ms. Found 0 JPA repository interfaces.
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[initialize:111] - Tomcat initialized with port 9080 (http)
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Initializing ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.apache.catalina.core.StandardService[log:173] - Starting service [Tomcat]
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.apache.catalina.core.StandardEngine[log:173] - Starting Servlet engine: [Apache Tomcat/10.1.31]
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/][log:173] - Initializing Spring embedded WebApplicationContext
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext[prepareWebApplicationContext:296] - Root WebApplicationContext: initialization completed in 4663 ms
+▶ 2025-02-19 13:54:32 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:54:32 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:109] - HikariPool-1 - Starting...
+▶ 2025-02-19 13:54:32 WARN  [restartedMain] com.zaxxer.hikari.util.DriverDataSource[<init>:68] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+▶ 2025-02-19 13:54:33 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool[checkFailFast:554] - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@642a47db
+▶ 2025-02-19 13:54:33 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:122] - HikariPool-1 - Start completed.
+▶ 2025-02-19 13:54:33 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper[logPersistenceUnitInformation:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+▶ 2025-02-19 13:54:33 INFO  [restartedMain] org.hibernate.Version[logVersion:44] - HHH000412: Hibernate ORM core version 6.5.3.Final
+▶ 2025-02-19 13:54:34 INFO  [restartedMain] org.hibernate.cache.internal.RegionFactoryInitiator[initiateService:50] - HHH000026: Second-level cache disabled
+▶ 2025-02-19 13:54:34 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo[addTransformer:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+▶ 2025-02-19 13:54:35 WARN  [restartedMain] org.hibernate.dialect.Dialect[checkVersion:354] - HHH000511: The 18.0.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+▶ 2025-02-19 13:54:36 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator[initiateService:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+▶ 2025-02-19 13:54:36 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean[buildNativeEntityManagerFactory:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+▶ 2025-02-19 13:54:36 INFO  [restartedMain] com.kh.demo.domain.common.svc.CodeSVCImpl[getA02Code:28] - getA02Code() 수행됨!
+▶ 2025-02-19 13:54:36 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[query:721] - Executing prepared SQL query
+▶ 2025-02-19 13:54:36 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[execute:650] - Executing prepared SQL statement [select code_id,decode   from code  where pcode_id = ?    and useyn = 'Y' ]
+▶ 2025-02-19 13:54:36 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:54:36 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'CODE_ID' to property 'codeId' of type 'java.lang.String'
+▶ 2025-02-19 13:54:36 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'DECODE' to property 'decode' of type 'java.lang.String'
+▶ 2025-02-19 13:54:36 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration[openEntityManagerInViewInterceptor:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+▶ 2025-02-19 13:54:37 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer[startServer:59] - LiveReload server is running on port 35729
+▶ 2025-02-19 13:54:37 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Starting ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:54:37 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[start:243] - Tomcat started on port 9080 (http) with context path '/'
+▶ 2025-02-19 13:54:37 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarted:56] - Started DemoApplication in 11.201 seconds (process running for 13.073)
+▶ 2025-02-19 13:56:12 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean[destroy:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+▶ 2025-02-19 13:56:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource[close:349] - HikariPool-1 - Shutdown initiated...
+▶ 2025-02-19 13:56:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource[close:351] - HikariPool-1 - Shutdown completed.
+▶ 2025-02-19 13:56:17 INFO  [background-preinit] org.hibernate.validator.internal.util.Version[<clinit>:21] - HV000001: Hibernate Validator 8.0.1.Final
+▶ 2025-02-19 13:56:17 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarting:50] - Starting DemoApplication using Java 17.0.13 with PID 9060 (D:\kdt_2\projects\demo\out\production\classes started by kh502 in D:\kdt_2\projects\demo)
+▶ 2025-02-19 13:56:17 INFO  [restartedMain] com.kh.demo.DemoApplication[logStartupProfileInfo:654] - No active profile set, falling back to 1 default profile: "default"
+▶ 2025-02-19 13:56:17 INFO  [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls[logTo:252] - The Class-Path manifest attribute in C:\Users\kh502\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/kh502/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+▶ 2025-02-19 13:56:17 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+▶ 2025-02-19 13:56:17 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor[logTo:252] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+▶ 2025-02-19 13:56:19 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+▶ 2025-02-19 13:56:19 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate[registerRepositoriesIn:211] - Finished Spring Data repository scanning in 59 ms. Found 0 JPA repository interfaces.
+▶ 2025-02-19 13:56:21 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[initialize:111] - Tomcat initialized with port 9080 (http)
+▶ 2025-02-19 13:56:21 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Initializing ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:56:21 INFO  [restartedMain] org.apache.catalina.core.StandardService[log:173] - Starting service [Tomcat]
+▶ 2025-02-19 13:56:21 INFO  [restartedMain] org.apache.catalina.core.StandardEngine[log:173] - Starting Servlet engine: [Apache Tomcat/10.1.31]
+▶ 2025-02-19 13:56:22 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/][log:173] - Initializing Spring embedded WebApplicationContext
+▶ 2025-02-19 13:56:22 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext[prepareWebApplicationContext:296] - Root WebApplicationContext: initialization completed in 4485 ms
+▶ 2025-02-19 13:56:23 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:56:23 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:109] - HikariPool-1 - Starting...
+▶ 2025-02-19 13:56:23 WARN  [restartedMain] com.zaxxer.hikari.util.DriverDataSource[<init>:68] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+▶ 2025-02-19 13:56:24 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool[checkFailFast:554] - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@5d5d2d5c
+▶ 2025-02-19 13:56:24 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource[getConnection:122] - HikariPool-1 - Start completed.
+▶ 2025-02-19 13:56:24 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper[logPersistenceUnitInformation:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+▶ 2025-02-19 13:56:24 INFO  [restartedMain] org.hibernate.Version[logVersion:44] - HHH000412: Hibernate ORM core version 6.5.3.Final
+▶ 2025-02-19 13:56:24 INFO  [restartedMain] org.hibernate.cache.internal.RegionFactoryInitiator[initiateService:50] - HHH000026: Second-level cache disabled
+▶ 2025-02-19 13:56:25 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo[addTransformer:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+▶ 2025-02-19 13:56:26 WARN  [restartedMain] org.hibernate.dialect.Dialect[checkVersion:354] - HHH000511: The 18.0.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+▶ 2025-02-19 13:56:27 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator[initiateService:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+▶ 2025-02-19 13:56:27 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean[buildNativeEntityManagerFactory:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+▶ 2025-02-19 13:56:27 INFO  [restartedMain] com.kh.demo.domain.common.svc.CodeSVCImpl[getA02Code:28] - getA02Code() 수행됨!
+▶ 2025-02-19 13:56:27 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[query:721] - Executing prepared SQL query
+▶ 2025-02-19 13:56:27 DEBUG [restartedMain] org.springframework.jdbc.core.JdbcTemplate[execute:650] - Executing prepared SQL statement [select code_id,decode   from code  where pcode_id = ?    and useyn = 'Y' ]
+▶ 2025-02-19 13:56:27 DEBUG [restartedMain] org.springframework.jdbc.datasource.DataSourceUtils[doGetConnection:117] - Fetching JDBC Connection from DataSource
+▶ 2025-02-19 13:56:27 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'CODE_ID' to property 'codeId' of type 'java.lang.String'
+▶ 2025-02-19 13:56:27 DEBUG [restartedMain] org.springframework.jdbc.core.BeanPropertyRowMapper[mapRow:347] - Mapping column 'DECODE' to property 'decode' of type 'java.lang.String'
+▶ 2025-02-19 13:56:27 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration[openEntityManagerInViewInterceptor:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+▶ 2025-02-19 13:56:30 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer[startServer:59] - LiveReload server is running on port 35729
+▶ 2025-02-19 13:56:30 INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol[log:173] - Starting ProtocolHandler ["http-nio-9080"]
+▶ 2025-02-19 13:56:30 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer[start:243] - Tomcat started on port 9080 (http) with context path '/'
+▶ 2025-02-19 13:56:30 INFO  [restartedMain] com.kh.demo.DemoApplication[logStarted:56] - Started DemoApplication in 13.848 seconds (process running for 15.226)
+▶ 2025-02-19 13:56:30 INFO  [http-nio-9080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/][log:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+▶ 2025-02-19 13:56:30 INFO  [http-nio-9080-exec-1] org.springframework.web.servlet.DispatcherServlet[initServletBean:532] - Initializing Servlet 'dispatcherServlet'
+▶ 2025-02-19 13:56:30 INFO  [http-nio-9080-exec-1] org.springframework.web.servlet.DispatcherServlet[initServletBean:554] - Completed initialization in 4 ms
+▶ 2025-02-19 13:56:33 ERROR [http-nio-9080-exec-4] com.kh.demo.web.VisualizationController[getWordCloud:35] - Error connecting to FastAPI server: I/O error on GET request for "http://localhost:8000/wordcloud": Connection refused: connect

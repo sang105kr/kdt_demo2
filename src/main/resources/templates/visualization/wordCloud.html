@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>워드 클라우드 시각화</title>
+  <script type="module">
+    import { ajax } from '/js/common.js';
+
+    const fetchWordCloud = async () => {
+      try {
+        const url = '/visualization/get-wordcloud';
+        const result = await ajax.get(url);
+        console.log(result);
+
+        const imgElement = document.getElementById('wordcloud-image');
+        imgElement.src = result.image;
+        imgElement.style.display = 'block'; // 이미지 표시
+      } catch (err) {
+        console.error(err.message);
+        alert("워드 클라우드를 가져오는 데 실패했습니다. 서버에 연결할 수 없습니다."); // 사용자에게 오류 메시지 표시
+      }
+    };
+
+    const fetchWordCloud2 = async () => {
+      try {
+        const url = '/visualization/get-wordcloud2';
+        const result = await ajax.get(url);
+        console.log(result);
+
+        const imgElement = document.getElementById('wordcloud-image2');
+        imgElement.src = result.image_path;
+        imgElement.style.display = 'block'; // 이미지 표시
+      } catch (err) {
+        console.error(err.message);
+        alert("워드 클라우드를 가져오는 데 실패했습니다. 서버에 연결할 수 없습니다."); // 사용자에게 오류 메시지 표시
+      }
+    };
+
+    btnVisualization.addEventListener('click',fetchWordCloud);
+    btnVisualization2.addEventListener('click',fetchWordCloud2);
+
+  </script>
+</head>
+<body>
+  <h1>워드 클라우드 시각화</h1>
+
+  <button id="btnVisualization">base64방식</button>
+  <img id="wordcloud-image" src="" alt="Word Cloud" width='200' height='100' style="display:none; margin-top: 20px;"/>
+
+  <hr>
+
+  <button id="btnVisualization2">파일경로방식</button>
+  <img id="wordcloud-image2" src="" alt="Word Cloud" width='200' height='100'  style="display:none; margin-top: 20px;"/>
+
+</body>
+</html>

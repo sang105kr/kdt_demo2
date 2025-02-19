@@ -40,9 +40,9 @@ public class AppConfig implements WebMvcConfigurer {
 //                    "/services/**"
 //            );
     //handler 실행시간 측정
-    registry.addInterceptor(executionTimeInterceptor)
-            .order(1)
-            .addPathPatterns("/**");
+//    registry.addInterceptor(executionTimeInterceptor)
+//            .order(1)
+//            .addPathPatterns("/**");
   }
 
   @Override
